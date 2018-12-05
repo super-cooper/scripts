@@ -1,0 +1,3 @@
+[submodule "hacking/hate_crack"]
+	path = hacking/hate_crack
+	url = git://github.com/trustedsec/hate_crack.git
