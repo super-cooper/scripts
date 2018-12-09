@@ -1,5 +1,6 @@
 #!/bin/env bash
 
+shopt -s expand_aliases
 cd /home/$USER
 
 # get rid of cdrom sources in sources.list
@@ -29,6 +30,9 @@ dtf submodule update
 
 # prepare apt
 sudo apt install wget curl
+sudo apt install python-gi
+sudo apt --fix-broken install
+sudo apt install python-gi
 sudo cp .root-config/sources.list /etc/apt/sources.list
 wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
 wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
