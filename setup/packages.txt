@@ -81,6 +81,7 @@ grub-common
 grub-efi-amd64
 gtk-3-examples
 gtk-doc-tools
+gvim
 hashcat
 htop
 ifupdown
