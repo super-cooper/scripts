@@ -1,0 +1,5 @@
+https://github.com/sharkdp/bat/releases/download/v0.9.0/bat_0.9.0_amd64.deb 
+https://github.com/sindresorhus/caprine/releases/download/v2.22.1/caprine_2.22.1_amd64.deb 
+https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb 
+https://download.opensuse.org/repositories/home:/antergos/Debian_9.0/amd64/lightdm-webkit2-greeter_2.2.5-1+15.4_amd64.deb 
+https://www.rescuetime.com/installers/rescuetime_current_amd64.deb
