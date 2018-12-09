@@ -24,6 +24,7 @@ fonts-firacode
 fonts-noto
 fonts-roboto 
 gconf-editor 
+gdb
 gimp 
 git
 git-extras 
@@ -147,10 +148,10 @@ python-pip
 python-shodan-doc
 python3-pip
 python3-shodan
+python3-xdg
 qtchooser
 ranger
 rename
-rescuetime
 solaar-gnome3
 spotify-client
 sysprof
