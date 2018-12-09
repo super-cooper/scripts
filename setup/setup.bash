@@ -13,6 +13,10 @@ printf "Please copy the ssh public key to GitHub or the rest of the script will 
 # prepare scripts dir
 mkdir -p /home/$USER/Code/misc/
 git clone git@github.com:super-cooper/scripts.git /home/$USER/Code/misc/scripts/
+cd /home/$USER/Code/misc/scripts
+git submodule init
+git submodule update
+cd
 
 # sync dotfiles
 alias dtf='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
