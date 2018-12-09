@@ -1,5 +1,6 @@
 apf-firewall 
 audacity 
+bash-completion
 build-essential 
 chrome-gnome-shell
 clang
@@ -27,7 +28,6 @@ gimp
 git
 git-extras 
 git-lfs 
-gnome-appfolders-manager
 gnome-backgrounds
 gnome-bluetooth
 gnome-boxes
@@ -81,7 +81,7 @@ grub-common
 grub-efi-amd64
 gtk-3-examples
 gtk-doc-tools
-gvim
+gvfs
 hashcat
 htop
 ifupdown
@@ -171,6 +171,7 @@ wireless-tools
 wireshark-doc
 wireshark-gtk
 vim
+vim-gtk3
 vim-gnome
 zsh
 zsh-antigen

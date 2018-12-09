@@ -31,19 +31,22 @@ dtf submodule update
 # prepare apt
 sudo apt install wget curl
 sudo apt install python-gi
-sudo apt --fix-broken install
-sudo apt install python-gi
 sudo cp .root-config/sources.list /etc/apt/sources.list
 wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
 wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ACCAF35C
 echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo bash -c "echo 'deb http://apt.insynchq.com/debian buster non-free contrib' > /etc/apt/sources.list.d/insync.list"
 
 
 # install packages
 sudo apt update
 sudo apt upgrade
+
+xargs -a <(awk '! /^ *(#|$)/' "/home/$USER/Code/misc/scripts/setup/packages.txt") -r -- sudo apt-get install
+
 wget -nv -i /home/$USER/Code/misc/scripts/setup/external-packages.txt -P /home/$USER/Downloads
 wget -nv -O /home/$USER/Downloads/mailspring.deb "https://updates.getmailspring.com/download?platform=linuxDeb" 
 git clone git@github.com:muflone/gnome-appfolders-manager.git /home/$USER/Downloads/gnome-appfolders-manager
@@ -51,7 +54,6 @@ python2 /home/$USER/Downloads/gnome-appfolders-manager/setup.py install
 
 sudo dpkg -i /home/$USER/Downloads/*.deb
 
-xargs -a <(awk '! /^ *(#|$)/' "/home/$USER/Code/misc/scripts/setup/packages.txt") -r -- sudo apt-get install
 
 # theme setup
 wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-libreoffice-theme/master/install-papirus-root.sh | sh
