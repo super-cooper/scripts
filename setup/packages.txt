@@ -17,7 +17,6 @@ dconf-cli
 deluge 
 diffutils 
 discord 
-docker-ce 
 doxygen 
 doxygen-doc 
 doxygen-gui 
@@ -31,6 +30,7 @@ fonts-roboto
 gdb-python2
 gconf-editor 
 gimp 
+git
 git-extras 
 git-lfs 
 gnome-appfolders-manager
@@ -72,7 +72,7 @@ gnome-software
 gnome-software-plugin-flatpak
 gnome-system-monitor
 gnome-terminal
-gnome-themes-standard-data
+gnome-themes-extra-data
 gnome-tweak-tool
 gnome-user-guide
 gnome-user-share
@@ -186,6 +186,8 @@ wget
 wireless-tools
 wireshark-doc
 wireshark-gtk
+vim
+vim-gnome
 zsh
 zsh-antigen
 zsh-doc
