@@ -49,11 +49,22 @@ xargs -a <(awk '! /^ *(#|$)/' "/home/$USER/Code/misc/scripts/setup/packages.txt"
 
 wget -nv -i /home/$USER/Code/misc/scripts/setup/external-packages.txt -P /home/$USER/Downloads
 wget -nv -O /home/$USER/Downloads/mailspring.deb "https://updates.getmailspring.com/download?platform=linuxDeb" 
+wget -nv -O /home/$USER/Downloads/nordvpn.deb "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb"
 git clone git@github.com:muflone/gnome-appfolders-manager.git /home/$USER/Downloads/gnome-appfolders-manager
 python2 /home/$USER/Downloads/gnome-appfolders-manager/setup.py install
 
 sudo dpkg -i /home/$USER/Downloads/*.deb
 
+# NordVPN bullshit
+sudo apt update
+sudo apt install nordvpn
+echo "Now attempting to log into NordVPN"
+nordvpn connect
+
+# Set up cloudflare DNS
+sudo cp /etc/resolv.conf /tmp/resolv.conf
+sudo bash -c 'printf "nameserver 127.0.0.1\nnameserver 1.1.1.1\nnameserver 1.1.0.1\n" > /etc/resolv.conf'
+sudo bash -c 'cat /tmp/resolv.conf >> /etc/resolv.conf'
 
 # theme setup
 wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-libreoffice-theme/master/install-papirus-root.sh | sh

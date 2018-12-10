@@ -1,5 +1,4 @@
 apf-firewall 
-audacity 
 bash-completion
 build-essential 
 chrome-gnome-shell
@@ -22,7 +21,8 @@ firmware-linux
 flatpak 
 fonts-firacode 
 fonts-noto
-fonts-roboto 
+fonts-roboto
+gcc 
 gconf-editor 
 gdb
 gimp 
