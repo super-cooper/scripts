@@ -4,3 +4,6 @@
 [submodule "hacking/github-dorks"]
 	path = hacking/github-dorks
 	url = git://github.com/techgaun/github-dorks.git
+[submodule "zsh/zemojify"]
+	path = zsh/zemojify
+	url = git://github.com/filipekiss/zemojify.git
