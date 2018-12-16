@@ -26,11 +26,11 @@ case "$1" in
         exit 0
         ;;
     -i|ignore)
-        forgit::ignore "${@:2}"
+        forgit:ignore "${@:2}"
         exit 0
         ;;
     -s|stash)
-        forgit::stash "${@:2}"
+        forgit::stash::show "${@:2}"
         exit 0
         ;;
     -r|restore)
