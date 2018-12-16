@@ -1,0 +1,44 @@
+#!/bin/zsh
+
+help="Usage: git fuzz <option> <args>\n-d diff\n-l log\n-a add\n-c clean\n-f files\n-i ignore\n-s stash\n-r restore"
+
+source /home/adam/.antigen/bundles/wfxr/forgit/forgit.plugin.zsh
+
+case "$1" in
+    -d|diff)
+        forgit::diff "${@:2}"
+        exit 0
+        ;;
+    -l|log)
+        forgit::log "${@:2}"
+        exit 0
+        ;;
+    -a|add)
+        forgit::add "${@:2}"
+        exit 0
+        ;;
+    -c|clean)
+        forgit::clean "${@:2}"
+        exit 0
+        ;;
+    -f|files)
+        forgit::fzf "${@:2}"
+        exit 0
+        ;;
+    -i|ignore)
+        forgit::ignore "${@:2}"
+        exit 0
+        ;;
+    -s|stash)
+        forgit::stash "${@:2}"
+        exit 0
+        ;;
+    -r|restore)
+        forgit::restore "${@:2}"
+        exit 0
+        ;;
+    *)
+        echo $help
+        exit 1
+        ;;
+esac
