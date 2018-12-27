@@ -45,15 +45,22 @@ sudo bash -c "echo 'deb http://apt.insynchq.com/debian buster non-free contrib' 
 sudo apt update
 sudo apt upgrade
 
-xargs -a <(awk '! /^ *(#|$)/' "/home/$USER/Code/misc/scripts/setup/packages.txt") -r -- sudo apt-get install
+xargs -a <(awk '! /^ *(#|$)/' "/home/$USER/Code/misc/scripts/setup/packages.txt") -r -- sudo apt install
 
 wget -nv -i /home/$USER/Code/misc/scripts/setup/external-packages.txt -P /home/$USER/Downloads
 wget -nv -O /home/$USER/Downloads/mailspring.deb "https://updates.getmailspring.com/download?platform=linuxDeb" 
 wget -nv -O /home/$USER/Downloads/nordvpn.deb "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb"
 git clone git@github.com:muflone/gnome-appfolders-manager.git /home/$USER/Downloads/gnome-appfolders-manager
-python2 /home/$USER/Downloads/gnome-appfolders-manager/setup.py install
+cd /home/$USER/Downloads/gnome-appfolders-manager
+sudo python2 setup.py install
+cd
 
 sudo dpkg -i /home/$USER/Downloads/*.deb
+sudo apt --fix-broken install
+sudo dpkg -i /hom/$USER/Downloads/mailspring.deb &> /dev/null
+
+# go binaries
+go get -u github.com/edi9999/path-extractor/path-extractor github.com/zricethezav/gitleaks github.com/michenriksen/gitrob
 
 # NordVPN bullshit
 sudo apt update

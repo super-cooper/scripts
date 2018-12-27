@@ -16,6 +16,7 @@ diffutils
 doxygen 
 doxygen-doc 
 doxygen-gui
+fd-find
 filezilla 
 firmware-linux
 flatpak 
@@ -150,8 +151,8 @@ python3-pip
 python3-shodan
 python3-xdg
 qtchooser
-ranger
 rename
+ripgrep
 solaar-gnome3
 spotify-client
 sysprof
