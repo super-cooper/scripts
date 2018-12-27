@@ -12,6 +12,7 @@ ssh-keygen
 printf "Please copy the ssh public key to GitHub or the rest of the script will break :)"; read
 
 # prepare scripts dir
+echo "Downloading scripts..."
 mkdir -p /home/$USER/Code/misc/
 git clone git@github.com:super-cooper/scripts.git /home/$USER/Code/misc/scripts/
 cd /home/$USER/Code/misc/scripts
@@ -20,6 +21,7 @@ git submodule update
 cd
 
 # sync dotfiles
+echo "Downloading dotfiles..."
 alias dtf='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 dtf init
 dtf remote add origin git@github.com:super-cooper/my-dotfiles.git
@@ -29,6 +31,7 @@ dtf submodule init
 dtf submodule update
 
 # prepare apt
+echo "Setting up apt for main package installs..."
 sudo apt install wget curl
 sudo apt install python-gi
 sudo cp .root-config/sources.list /etc/apt/sources.list
@@ -42,9 +45,11 @@ sudo bash -c "echo 'deb http://apt.insynchq.com/debian buster non-free contrib' 
 
 
 # install packages
+echo "Initial package upgrades..."
 sudo apt update
 sudo apt upgrade
 
+echo "Installing packages..."
 xargs -a <(awk '! /^ *(#|$)/' "/home/$USER/Code/misc/scripts/setup/packages.txt") -r -- sudo apt install
 
 wget -nv -i /home/$USER/Code/misc/scripts/setup/external-packages.txt -P /home/$USER/Downloads
@@ -60,26 +65,31 @@ sudo apt --fix-broken install
 sudo dpkg -i /hom/$USER/Downloads/mailspring.deb &> /dev/null
 
 # go binaries
+echo "Installing golang packages..."
 go get -u github.com/edi9999/path-extractor/path-extractor github.com/zricethezav/gitleaks github.com/michenriksen/gitrob
 
 # NordVPN bullshit
+echo "Setting up NordVPN..."
 sudo apt update
 sudo apt install nordvpn
 echo "Now attempting to log into NordVPN"
 nordvpn connect
 
 # Set up cloudflare DNS
+echo "Setting DNS server to CloudFlare..."
 sudo cp /etc/resolv.conf /tmp/resolv.conf
 sudo bash -c 'printf "nameserver 127.0.0.1\nnameserver 1.1.1.1\nnameserver 1.1.0.1\n" > /etc/resolv.conf'
 sudo bash -c 'cat /tmp/resolv.conf >> /etc/resolv.conf'
 
 # theme setup
+echo "Setting up theme..."
 wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-libreoffice-theme/master/install-papirus-root.sh | sh
 wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-filezilla-themes/master/install.sh | sh
 wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-folders/master/install.sh | sh
 
 
 # link root to config
+echo "Linking root to user config..."
 sudo ln -sf /home/adam/.vimrc /root/.vimrc
 sudo ln -sf /home/adam/.vim /root/.vim
 sudo ln -sf /home/adam/.bashrc /root/.bashrc
