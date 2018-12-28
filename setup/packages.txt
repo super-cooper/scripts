@@ -186,6 +186,7 @@ wireshark-gtk
 vim
 vim-gtk3
 vim-gnome
+xclip
 zsh
 zsh-antigen
 zsh-doc

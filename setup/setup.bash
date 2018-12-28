@@ -75,7 +75,7 @@ go get -u github.com/edi9999/path-extractor/path-extractor github.com/zricetheza
 mkdir -p /home/$USER/.gopath/src/github.com/github
 git clone --config transfer.fsckobjects=false --config receive.fsckobjects=false --config fetch.fsckobjects=false https://github.com/github/hub.git /home/$USER/.gopath/src/github.com/github/hub
 cd /home/$USER/.gopath/src/github.com/github/hub
-sudo make install 
+sudo make install prefix=/usr/local
 cd
 
 # Set up fzf
