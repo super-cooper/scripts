@@ -7,6 +7,8 @@ cd /home/$USER
 sudo sed -Ei 's/(deb cdrom.+)/# \1/g' /etc/apt/sources.list
 sudo bash -c 'echo "deb http://ftp.us.debian.org/debian/ buster main" >> /etc/apt/sources.list'
 sudo bash -c 'echo "deb-src http://ftp.us.debian.org/debian/ buster main" >> /etc/apt/sources.list'
+sudo bash -c 'echo "deb http://ftp.us.debian.org/debian/ stretch main" >> /etc/apt/sources.list'
+sudo bash -c 'echo "deb-src http://ftp.us.debian.org/debian/ stretch main" >> /etc/apt/sources.list'
 sudo apt update
 
 # set up git
@@ -54,22 +56,33 @@ sudo apt upgrade
 
 echo "Installing packages..."
 xargs -a <(awk '! /^ *(#|$)/' "/home/$USER/Code/misc/scripts/setup/packages.txt") -r -- sudo apt install
-
 wget -nv -i /home/$USER/Code/misc/scripts/setup/external-packages.txt -P /home/$USER/Downloads
 wget -nv -O /home/$USER/Downloads/mailspring.deb "https://updates.getmailspring.com/download?platform=linuxDeb" 
 wget -nv -O /home/$USER/Downloads/nordvpn.deb "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb"
+wget -nv -O /home/$USER/Downloads/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
 git clone git@github.com:muflone/gnome-appfolders-manager.git /home/$USER/Downloads/gnome-appfolders-manager
 cd /home/$USER/Downloads/gnome-appfolders-manager
 sudo python2 setup.py install
 cd
 
 sudo dpkg -i /home/$USER/Downloads/*.deb
-sudo apt --fix-broken install
-sudo dpkg -i /hom/$USER/Downloads/mailspring.deb &> /dev/null
+
+sudo pip3 install thefuck argcomplete wakatime
 
 # go binaries
 echo "Installing golang packages..."
 go get -u github.com/edi9999/path-extractor/path-extractor github.com/zricethezav/gitleaks github.com/michenriksen/gitrob
+mkdir -p /home/$USER/.gopath/src/github.com/github
+git clone --config transfer.fsckobjects=false --config receive.fsckobjects=false --config fetch.fsckobjects=false https://github.com/github/hub.git /home/$USER/.gopath/src/github.com/github/hub
+cd /home/$USER/.gopath/src/github.com/github/hub
+sudo make install 
+cd
+
+# Set up fzf
+echo "Setting up fzf..."
+cd ~/.fzf
+./install
+cd
 
 # NordVPN bullshit
 echo "Setting up NordVPN..."
@@ -90,7 +103,6 @@ wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-libre
 wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-filezilla-themes/master/install.sh | sh
 wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-folders/master/install.sh | sh
 
-
 # link root to config
 echo "Linking root to user config..."
 sudo ln -sf /home/adam/.vimrc /root/.vimrc
@@ -98,5 +110,36 @@ sudo ln -sf /home/adam/.vim /root/.vim
 sudo ln -sf /home/adam/.bashrc /root/.bashrc
 sudo ln -sf /home/adam/.zshrc /root/.zshrc
 
+# Install GNOME extensions
+echo "Installing GNOME shell extensions..."
+alias gsei="/home/adam/Code/misc/scripts/gnome-shell-extension-installer --yes"
+gsei 16    # Auto move windows
+gsei 97    # Coverflow alt-tab
+gsei 1160  # Dash to Panel
+gsei 959   # Disable Workspace Switcher Popup
+gsei 600   # Launch new instance
+gsei 18    # Native Window Placement
+gsei 118   # No Topleft Hot Corner
+gsei 708   # Panel OSD
+gsei 1031  # TopIcons Plus
+gsei 19    # User Themes
+gsei 484   # Workspace Grid
+gsei 10    # windowNavigator
+
+# Install adapta theme
+echo "Installing adapta GTK theme..."
+cd /home/$USER/Downloads
+git config git@github.com:adapta-project/adapta-gtk-theme.git
+cd adapta-gtk-theme
+./autogen.sh --prefix=/usr --enable-parallel --enable-gtk_next  # TODO read in colors from file and use --with_ options
+make
+sudo make install
+# Discord theme
+bash <(wget -qO- https://gitlab.com/Scrumplex/Discord-Adapta-Nokto/raw/master/scripts/linux/dc-patcher)
+
+# Set shell to zsh
+echo "Setting shell to zsh..."
+chsh -s /bin/zsh
+
 # open browser to things not yet installed
-firefox opera.com/computer/linux slack.com/downloads/linux
+firefox opera.com/computer/linux slack.com/downloads/linux https://www.anaconda.com/download/#linux 

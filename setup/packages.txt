@@ -1,6 +1,9 @@
 apf-firewall 
+autoconf
+automake
 bash-completion
 build-essential 
+bundler
 chrome-gnome-shell
 clang
 cmake
@@ -20,6 +23,7 @@ fd-find
 filezilla 
 firmware-linux
 flatpak 
+fonts-cmu
 fonts-firacode 
 fonts-noto
 fonts-roboto
@@ -89,11 +93,14 @@ htop
 ifupdown
 inetutils-traceroute
 inetutils-tools
+inkscape
 insync-nautilus
 iptables
 kismet
 less
 libboost-all-dev
+libgdk-pixbuf2.0-dev
+libglib2.0-dev
 libreoffice-avmedia-backend-gstreamer
 libreoffice-base
 libreoffice-calc
@@ -119,6 +126,7 @@ libreoffice-writer2latex
 libreoffice-writer2xhtml
 libtsan0
 libtsan0-dbg
+libxml2-utils
 lightdm
 linux-headers-amd64
 lolcat
@@ -142,6 +150,7 @@ openjdk-8-jre
 openjdk-8-jre-headless
 papirus-icon-theme
 parallel
+pkg-config
 powertop
 python-dbg
 python-dev
@@ -153,6 +162,8 @@ python3-xdg
 qtchooser
 rename
 ripgrep
+ruby2.5
+sassc
 solaar-gnome3
 spotify-client
 sysprof
