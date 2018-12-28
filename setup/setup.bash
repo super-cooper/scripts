@@ -1,10 +1,12 @@
-#!/bin/env bash
+#!/bin/bash
 
 shopt -s expand_aliases
 cd /home/$USER
 
 # get rid of cdrom sources in sources.list
 sudo sed -Ei 's/(deb cdrom.+)/# \1/g' /etc/apt/sources.list
+echo "deb http://ftp.us.debian.org/debian/ buster main" >> /etc/apt/sources.list
+echo "deb-src http://ftp.us.debian.org/debian/ buster main" >> /etc/apt/sources.list
 
 # set up git
 sudo apt install git
