@@ -7,6 +7,7 @@ cd /home/$USER
 sudo sed -Ei 's/(deb cdrom.+)/# \1/g' /etc/apt/sources.list
 sudo bash -c 'echo "deb http://ftp.us.debian.org/debian/ buster main" >> /etc/apt/sources.list'
 sudo bash -c 'echo "deb-src http://ftp.us.debian.org/debian/ buster main" >> /etc/apt/sources.list'
+sudo apt update
 
 # set up git
 sudo apt install git
