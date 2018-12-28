@@ -66,22 +66,18 @@ sudo python2 setup.py install
 cd
 
 sudo dpkg -i /home/$USER/Downloads/*.deb
+sudo apt --fix-broken install
+sudo apt install /home/$USER/Downloads/mailspring.deb
 
 sudo pip3 install thefuck argcomplete wakatime
 
 # go binaries
 echo "Installing golang packages..."
-export GOPATH=/home/$USER/.golang
-go get -u github.com/edi9999/path-extractor/path-extractor github.com/zricethezav/gitleaks github.com/michenriksen/gitrob
-mkdir -p $GOPATH/src/github.com/github
-git clone --config transfer.fsckobjects=false --config receive.fsckobjects=false --config fetch.fsckobjects=false https://github.com/github/hub.git $GOPATH/src/github.com/github/hub
-cd $GOPATH/src/github.com/github/hub
-sudo make install prefix=/usr/local
-cd
+go get -v -u github.com/edi9999/path-extractor/path-extractor github.com/zricethezav/gitleaks github.com/michenriksen/gitrob github.com/github/hub
 
 # Set up fzf
 echo "Setting up fzf..."
-cd ~/.fzf
+cd /home/$USER/.fzf
 ./install
 cd
 
@@ -130,7 +126,7 @@ gsei 10    # windowNavigator
 # Install adapta theme
 echo "Installing adapta GTK theme..."
 cd /home/$USER/Downloads
-git config git@github.com:adapta-project/adapta-gtk-theme.git
+git clone git@github.com:adapta-project/adapta-gtk-theme.git
 cd adapta-gtk-theme
 ./autogen.sh --prefix=/usr --enable-parallel --enable-gtk_next  # TODO read in colors from file and use --with_ options
 make
