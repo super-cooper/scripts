@@ -71,10 +71,11 @@ sudo pip3 install thefuck argcomplete wakatime
 
 # go binaries
 echo "Installing golang packages..."
+export GOPATH=/home/$USER/.golang
 go get -u github.com/edi9999/path-extractor/path-extractor github.com/zricethezav/gitleaks github.com/michenriksen/gitrob
-mkdir -p /home/$USER/.gopath/src/github.com/github
-git clone --config transfer.fsckobjects=false --config receive.fsckobjects=false --config fetch.fsckobjects=false https://github.com/github/hub.git /home/$USER/.gopath/src/github.com/github/hub
-cd /home/$USER/.gopath/src/github.com/github/hub
+mkdir -p $GOPATH/src/github.com/github
+git clone --config transfer.fsckobjects=false --config receive.fsckobjects=false --config fetch.fsckobjects=false https://github.com/github/hub.git $GOPATH/src/github.com/github/hub
+cd $GOPATH/src/github.com/github/hub
 sudo make install prefix=/usr/local
 cd
 
