@@ -75,6 +75,7 @@ sudo pip3 install thefuck argcomplete wakatime
 echo "Installing golang packages..."
 go get -v -u github.com/edi9999/path-extractor/path-extractor github.com/zricethezav/gitleaks github.com/michenriksen/gitrob github.com/github/hub
 mv /home/$USER/go /home/$USER/.gopath
+sudo ln -s /home/$USER/.gopath/bin/hub /bin/hub
 
 # Set up fzf
 echo "Setting up fzf..."
