@@ -189,8 +189,6 @@ vim
 vim-gtk3
 vim-gnome
 xclip
-yubico-personalization
-yubico-personlization-gui
 yubikey-manager
 yubioath-desktop
 zsh
