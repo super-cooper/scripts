@@ -101,6 +101,7 @@ less
 libboost-all-dev
 libgdk-pixbuf2.0-dev
 libglib2.0-dev
+libpam-u2f
 libreoffice-avmedia-backend-gstreamer
 libreoffice-base
 libreoffice-calc
@@ -126,6 +127,7 @@ libreoffice-writer2latex
 libreoffice-writer2xhtml
 libtsan0
 libtsan0-dbg
+libu2f-host0
 libxml2-utils
 lightdm
 linux-headers-amd64
@@ -187,6 +189,10 @@ vim
 vim-gtk3
 vim-gnome
 xclip
+yubico-personalization
+yubico-personlization-gui
+yubikey-manager
+yubioath-desktop
 zsh
 zsh-antigen
 zsh-doc

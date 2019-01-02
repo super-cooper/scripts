@@ -95,6 +95,15 @@ sudo cp /etc/resolv.conf /tmp/resolv.conf
 sudo bash -c 'printf "nameserver 127.0.0.1\nnameserver 1.1.1.1\nnameserver 1.1.0.1\n" > /etc/resolv.conf'
 sudo bash -c 'cat /tmp/resolv.conf >> /etc/resolv.conf'
 
+# Set up yubikey
+echo "Setting up Yubikey..."
+sudo wget -O /etc/udev/rules.d/70-u2f.rules https://raw.githubusercontent.com/Yubico/libu2f-host/master/70-u2f.rules
+printf "Please plug in the Yubikey :)"; read
+mkdir -p /home/$USER/.config/Yubico/
+echo "Touch the Yubikey when it flashes!"
+pamu2fcfg > /home/$USER/.config/Yubico/u2f_keys
+sudo sed -i '/@include common-auth/a auth required pam_u2f.so' /etc/pam.d/lightdm
+
 # theme setup
 echo "Setting up theme..."
 wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-libreoffice-theme/master/install-papirus-root.sh | sh
@@ -140,4 +149,4 @@ echo "Setting shell to zsh..."
 chsh -s /bin/zsh
 
 # open browser to things not yet installed
-firefox opera.com/computer/linux slack.com/downloads/linux https://www.anaconda.com/download/#linux 
+firefox opera.com/computer/linux slack.com/downloads/linux https://www.anaconda.com/download/#linux jetbrains.com
