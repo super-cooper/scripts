@@ -120,19 +120,20 @@ sudo ln -sf /home/adam/.zshrc /root/.zshrc
 
 # Install GNOME extensions
 echo "Installing GNOME shell extensions..."
-alias gsei="/home/adam/Code/misc/scripts/gnome-shell-extension-installer --yes"
-gsei 16    # Auto move windows
-gsei 97    # Coverflow alt-tab
-gsei 1160  # Dash to Panel
-gsei 959   # Disable Workspace Switcher Popup
-gsei 600   # Launch new instance
-gsei 18    # Native Window Placement
-gsei 118   # No Topleft Hot Corner
-gsei 708   # Panel OSD
-gsei 1031  # TopIcons Plus
-gsei 19    # User Themes
-gsei 484   # Workspace Grid
-gsei 10    # windowNavigator
+gsei="/home/adam/Code/misc/scripts/gnome-shell-extension-installer --yes"
+$gsei 16    # Auto move windows
+$gsei 97    # Coverflow alt-tab
+$gsei 1160  # Dash to Panel
+$gsei 959   # Disable Workspace Switcher Popup
+$gsei 600   # Launch new instance
+$gsei 18    # Native Window Placement
+$gsei 118   # No Topleft Hot Corner
+$gsei 708   # Panel OSD
+$gsei 1031  # TopIcons Plus
+$gsei 19    # User Themes
+$gsei 484   # Workspace Grid
+$gsei 10    # windowNavigator
+$gsei 277   # Impatience
 
 # Install adapta theme
 echo "Installing adapta GTK theme..."
