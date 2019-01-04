@@ -45,7 +45,7 @@ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key a
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ACCAF35C
-echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo bash -c "echo 'deb http://apt.insynchq.com/debian buster non-free contrib' > /etc/apt/sources.list.d/insync.list"
 
 
@@ -88,7 +88,7 @@ echo "Setting up NordVPN..."
 sudo apt update
 sudo apt install nordvpn
 echo "Now attempting to log into NordVPN"
-nordvpn connect
+nordvpn connect US
 
 # Set up cloudflare DNS
 echo "Setting DNS server to CloudFlare..."
