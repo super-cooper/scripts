@@ -147,7 +147,7 @@ sudo make install
 bash <(wget -qO- https://gitlab.com/Scrumplex/Discord-Adapta-Nokto/raw/master/scripts/linux/dc-patcher)
 
 # Set up terminal config
-dconf load /org/terminal/legacy/profiles:/$(cat /home/$USER/.root-config/theme/gnome-terminal/gnome-terminal-material-name.txt) < /home/$USER/.root-config/theme/gnome-terminal/gnome-terminal-material.dconf
+dconf load /org/terminal/legacy/profiles:/$(/bin/cat /home/adam/.root-config/theme/gnome-terminal/gnome-terminal-material-name.txt | tr -d '\n ')/ < /home/$USER/.root-config/theme/gnome-terminal/gnome-terminal-material.dconf
 
 # Set shell to zsh
 echo "Setting shell to zsh..."
