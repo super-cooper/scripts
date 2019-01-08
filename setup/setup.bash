@@ -60,10 +60,6 @@ wget -nv -i /home/$USER/Code/misc/scripts/setup/external-packages.txt -P /home/$
 wget -nv -O /home/$USER/Downloads/mailspring.deb "https://updates.getmailspring.com/download?platform=linuxDeb" 
 wget -nv -O /home/$USER/Downloads/nordvpn.deb "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb"
 wget -nv -O /home/$USER/Downloads/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
-git clone git@github.com:muflone/gnome-appfolders-manager.git /home/$USER/Downloads/gnome-appfolders-manager
-cd /home/$USER/Downloads/gnome-appfolders-manager
-sudo python2 setup.py install
-cd
 
 sudo dpkg -i /home/$USER/Downloads/*.deb
 sudo apt --fix-broken install
@@ -134,6 +130,7 @@ $gsei 19    # User Themes
 $gsei 484   # Workspace Grid
 $gsei 10    # windowNavigator
 $gsei 277   # Impatience
+$gsei 1217  # Appfolders Management
 
 # Install adapta theme
 echo "Installing adapta GTK theme..."
