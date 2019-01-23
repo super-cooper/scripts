@@ -69,9 +69,16 @@ sudo pip3 install thefuck argcomplete wakatime
 
 # go binaries
 echo "Installing golang packages..."
-go get -v -u github.com/edi9999/path-extractor/path-extractor github.com/zricethezav/gitleaks github.com/michenriksen/gitrob github.com/github/hub
+go get -v -u github.com/edi9999/path-extractor/path-extractor github.com/zricethezav/gitleaks github.com/michenriksen/gitrob github.com/github/hub github.com/wtfutil/wtf google.golang.org/api/calendar/v3 golang.org/x/oauth2/google
 mv /home/$USER/go /home/$USER/.gopath
 sudo ln -s /home/$USER/.gopath/bin/hub /bin/hub
+cd $GOPATH/src/github.com/wtfutil/wtf
+go install -v -ldflags="-s -w"
+make
+mkdir -p ~/.config/google/credentials/wtfutil
+cd ~/.config/google/credentials/wtfutil
+firefox https://developers.google.com/calendar/quickstart/go
+printf "Please download the client secret for gcal to ~/.config/google/credentials/wtfutil/credentials.json :)"; read
 
 # Set up fzf
 echo "Setting up fzf..."
