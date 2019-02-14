@@ -57,13 +57,12 @@ sudo apt upgrade
 echo "Installing packages..."
 xargs -a <(awk '! /^ *(#|$)/' "/home/$USER/Code/misc/scripts/setup/packages.txt") -r -- sudo apt install
 wget -nv -i /home/$USER/Code/misc/scripts/setup/external-packages.txt -P /home/$USER/Downloads
-wget -nv -O /home/$USER/Downloads/mailspring.deb "https://updates.getmailspring.com/download?platform=linuxDeb" 
 wget -nv -O /home/$USER/Downloads/nordvpn.deb "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb"
 wget -nv -O /home/$USER/Downloads/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
 
 sudo dpkg -i /home/$USER/Downloads/*.deb
-sudo apt --fix-broken install
-sudo apt install /home/$USER/Downloads/mailspring.deb
+
+sudo snap install mailspring
 
 sudo pip3 install thefuck argcomplete wakatime
 
