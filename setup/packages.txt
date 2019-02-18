@@ -166,7 +166,6 @@ rename
 ripgrep
 ruby2.5
 sassc
-snapd
 solaar-gnome3
 spotify-client
 sysprof
