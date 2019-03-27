@@ -1,4 +1,4 @@
-#!/bin/bash
+!bin/bash
 
 shopt -s expand_aliases
 cd /home/$USER
@@ -18,9 +18,9 @@ printf "Please copy the ssh public key to GitHub or the rest of the script will 
 
 # prepare scripts dir
 echo "Downloading scripts..."
-mkdir -p /home/$USER/Code/misc/
-git clone git@github.com:super-cooper/scripts.git /home/$USER/Code/misc/scripts/
-cd /home/$USER/Code/misc/scripts
+mkdir -p /home/$USER/dev/
+git clone git@github.com:super-cooper/scripts.git /home/$USER/dev/scripts/
+cd /home/$USER/dev/scripts
 git submodule init
 git submodule update
 cd
@@ -55,8 +55,8 @@ sudo apt update
 sudo apt upgrade
 
 echo "Installing packages..."
-xargs -a <(awk '! /^ *(#|$)/' "/home/$USER/Code/misc/scripts/setup/packages.txt") -r -- sudo apt install
-wget -nv -i /home/$USER/Code/misc/scripts/setup/external-packages.txt -P /home/$USER/Downloads
+xargs -a <(awk '! /^ *(#|$)/' "/home/$USER/dev/scripts/setup/packages.txt") -r -- sudo apt install
+wget -nv -i /home/$USER/dev/scripts/setup/external-packages.txt -P /home/$USER/Downloads
 wget -nv -O /home/$USER/Downloads/mailspring.deb "https://updates.getmailspring.com/download?platform=linuxDeb" 
 wget -nv -O /home/$USER/Downloads/nordvpn.deb "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb"
 wget -nv -O /home/$USER/Downloads/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
@@ -123,7 +123,7 @@ sudo ln -sf /home/adam/.zshrc /root/.zshrc
 
 # Install GNOME extensions
 echo "Installing GNOME shell extensions..."
-gsei="/home/adam/Code/misc/scripts/gnome-shell-extension-installer --yes"
+gsei="/home/adam/dev/scripts/gnome-shell-extension-installer --yes"
 $gsei 16    # Auto move windows
 $gsei 97    # Coverflow alt-tab
 $gsei 1160  # Dash to Panel
