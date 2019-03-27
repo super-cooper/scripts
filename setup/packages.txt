@@ -161,6 +161,7 @@ python-shodan-doc
 python3-pip
 python3-shodan
 python3-xdg
+qalc
 qtchooser
 rename
 ripgrep
