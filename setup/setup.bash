@@ -1,14 +1,17 @@
-!bin/bash
+#!bin/bash
 
 shopt -s expand_aliases
-cd /home/$USER
+cd $HOME
+
+testing=buster
+stable=stretch
 
 # get rid of cdrom sources in sources.list
 sudo sed -Ei 's/(deb cdrom.+)/# \1/g' /etc/apt/sources.list
-sudo bash -c 'echo "deb http://ftp.us.debian.org/debian/ buster main" >> /etc/apt/sources.list'
-sudo bash -c 'echo "deb-src http://ftp.us.debian.org/debian/ buster main" >> /etc/apt/sources.list'
-sudo bash -c 'echo "deb http://ftp.us.debian.org/debian/ stretch main" >> /etc/apt/sources.list'
-sudo bash -c 'echo "deb-src http://ftp.us.debian.org/debian/ stretch main" >> /etc/apt/sources.list'
+sudo bash -c 'echo deb http://ftp.us.debian.org/debian/ $testing main >> /etc/apt/sources.list'
+sudo bash -c 'echo deb-src http://ftp.us.debian.org/debian/ $testing main >> /etc/apt/sources.list'
+sudo bash -c 'echo deb http://ftp.us.debian.org/debian/ $stable main >> /etc/apt/sources.list'
+sudo bash -c 'echo deb-src http://ftp.us.debian.org/debian/ $stable main >> /etc/apt/sources.list'
 sudo apt update
 
 # set up git
@@ -18,9 +21,9 @@ printf "Please copy the ssh public key to GitHub or the rest of the script will 
 
 # prepare scripts dir
 echo "Downloading scripts..."
-mkdir -p /home/$USER/dev/
-git clone git@github.com:super-cooper/scripts.git /home/$USER/dev/scripts/
-cd /home/$USER/dev/scripts
+mkdir -p $HOME/dev/
+git clone git@github.com:super-cooper/scripts.git $HOME/dev/scripts/
+cd $HOME/dev/scripts
 git submodule init
 git submodule update
 cd
@@ -55,23 +58,31 @@ sudo apt update
 sudo apt upgrade
 
 echo "Installing packages..."
-xargs -a <(awk '! /^ *(#|$)/' "/home/$USER/dev/scripts/setup/packages.txt") -r -- sudo apt install
-wget -nv -i /home/$USER/dev/scripts/setup/external-packages.txt -P /home/$USER/Downloads
-wget -nv -O /home/$USER/Downloads/mailspring.deb "https://updates.getmailspring.com/download?platform=linuxDeb" 
-wget -nv -O /home/$USER/Downloads/nordvpn.deb "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb"
-wget -nv -O /home/$USER/Downloads/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
+xargs -a <(awk '! /^ *(#|$)/' "$HOME/dev/scripts/setup/packages.txt") -r -- sudo apt install
+wget -nv -i $HOME/dev/scripts/setup/external-packages.txt -P $HOME/Downloads
+wget -nv -O $HOME/Downloads/mailspring.deb "https://updates.getmailspring.com/download?platform=linuxDeb" 
+wget -nv -O $HOME/Downloads/nordvpn.deb "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb"
+wget -nv -O $HOME/Downloads/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
 
-sudo dpkg -i /home/$USER/Downloads/*.deb
+sudo dpkg -i $HOME/Downloads/*.deb
 sudo apt --fix-broken install
-sudo apt install /home/$USER/Downloads/mailspring.deb
+sudo apt install $HOME/Downloads/mailspring.deb
 
 sudo pip3 install thefuck argcomplete wakatime
+
+sudo pip install future
+cd $HOME/Downloads/
+git clone git@github.com:facebook/PathPicker/
+cd PathPicker/debian
+./package.sh
+sudo dpkg -i ../*.deb
+cd
 
 # go binaries
 echo "Installing golang packages..."
 go get -v -u github.com/edi9999/path-extractor/path-extractor github.com/zricethezav/gitleaks github.com/michenriksen/gitrob github.com/github/hub github.com/wtfutil/wtf google.golang.org/api/calendar/v3 golang.org/x/oauth2/google
-mv /home/$USER/go /home/$USER/.gopath
-sudo ln -s /home/$USER/.gopath/bin/hub /bin/hub
+mv $HOME/go $HOME/.gopath
+sudo ln -s $HOME/.gopath/bin/hub /bin/hub
 cd $GOPATH/src/github.com/wtfutil/wtf
 go install -v -ldflags="-s -w"
 make
@@ -82,7 +93,7 @@ printf "Please download the client secret for gcal to ~/.config/google/credentia
 
 # Set up fzf
 echo "Setting up fzf..."
-cd /home/$USER/.fzf
+cd $HOME/.fzf
 ./install
 cd
 
@@ -103,9 +114,9 @@ sudo bash -c 'cat /tmp/resolv.conf >> /etc/resolv.conf'
 echo "Setting up Yubikey..."
 sudo wget -O /etc/udev/rules.d/70-u2f.rules https://raw.githubusercontent.com/Yubico/libu2f-host/master/70-u2f.rules
 printf "Please plug in the Yubikey :)"; read
-mkdir -p /home/$USER/.config/Yubico/
+mkdir -p $HOME/.config/Yubico/
 echo "Touch the Yubikey when it flashes!"
-pamu2fcfg > /home/$USER/.config/Yubico/u2f_keys
+pamu2fcfg > $HOME/.config/Yubico/u2f_keys
 sudo sed -i '/@include common-auth/a auth required pam_u2f.so' /etc/pam.d/lightdm
 
 # theme setup
@@ -141,7 +152,7 @@ $gsei 1217  # Appfolders Management
 
 # Install adapta theme
 echo "Installing adapta GTK theme..."
-cd /home/$USER/Downloads
+cd $HOME/Downloads
 git clone git@github.com:adapta-project/adapta-gtk-theme.git
 cd adapta-gtk-theme
 ./autogen.sh --prefix=/usr --enable-parallel --enable-gtk_next  # TODO read in colors from file and use --with_ options
@@ -151,7 +162,7 @@ sudo make install
 bash <(wget -qO- https://gitlab.com/Scrumplex/Discord-Adapta-Nokto/raw/master/scripts/linux/dc-patcher)
 
 # Set up terminal config
-dconf load /org/terminal/legacy/profiles:/$(/bin/cat /home/adam/.root-config/theme/gnome-terminal/gnome-terminal-material-name.txt | tr -d '\n ')/ < /home/$USER/.root-config/theme/gnome-terminal/gnome-terminal-material.dconf
+dconf load /org/terminal/legacy/profiles:/$(/bin/cat /home/adam/.root-config/theme/gnome-terminal/gnome-terminal-material-name.txt | tr -d '\n ')/ < $HOME/.root-config/theme/gnome-terminal/gnome-terminal-material.dconf
 
 # Set shell to zsh
 echo "Setting shell to zsh..."
