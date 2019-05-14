@@ -102,7 +102,8 @@ echo "Setting up NordVPN..."
 sudo apt update
 sudo apt install nordvpn
 echo "Now attempting to log into NordVPN"
-nordvpn connect US
+nordvpn c US
+nordvpn d 
 
 # Set up cloudflare DNS
 echo "Setting DNS server to CloudFlare..."
