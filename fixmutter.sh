@@ -2,7 +2,7 @@
 
 cd ~/Downloads
 
-mkdir mutter
+rm -rf mutter && mkdir mutter
 cd mutter
 
 sudo apt build-dep mutter
