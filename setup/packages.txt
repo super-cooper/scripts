@@ -4,7 +4,6 @@ automake
 bash-completion
 build-essential 
 bundler
-chrome-gnome-shell
 clang
 cmake
 cmus
