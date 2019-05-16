@@ -25,6 +25,7 @@ flatpak
 fonts-cmu
 fonts-firacode 
 fonts-noto
+fonts-powerline
 fonts-roboto
 gcc 
 gconf-editor 
@@ -152,6 +153,8 @@ openjdk-8-jre-headless
 papirus-icon-theme
 parallel
 pkg-config
+powerline
+powerline-gitstatus
 powertop
 python-dbg
 python-dev
