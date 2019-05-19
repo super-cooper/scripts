@@ -1,6 +1,6 @@
 #!/bin/bash
 # Find and replace all strings in tracked files in a git repository
-# USAGE: git %s <find_text> <replace_text> <args>
+# USAGE: git sed <find_text> <replace_text> <args>
 
 # escape any regexp chars used by sed
 prepare() {
