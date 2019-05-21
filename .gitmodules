@@ -7,3 +7,9 @@
 [submodule "zsh/zemojify"]
 	path = zsh/zemojify
 	url = git://github.com/filipekiss/zemojify.git
+[submodule "hacking/pwndb"]
+	path = hacking/pwndb
+	url = git://github.com/davidtavarez/pwndb.git
+[submodule "hacking/h8mail"]
+	path = hacking/h8mail
+	url = git://github.com/khast3x/h8mail.git
