@@ -68,7 +68,7 @@ sudo dpkg -i $HOME/Downloads/*.deb
 sudo apt --fix-broken install
 sudo apt install $HOME/Downloads/mailspring.deb
 
-sudo pip3 install thefuck argcomplete wakatime
+pip3 install thefuck argcomplete wakatime pipupgrade
 
 sudo pip install future
 cd $HOME/Downloads/
