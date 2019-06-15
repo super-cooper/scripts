@@ -5,6 +5,7 @@ bash-completion
 build-essential 
 bundler
 clang
+closure-linter
 cmake
 cmus
 colordiff
@@ -145,6 +146,7 @@ netcat
 network-manager-gnome
 ngrep
 nmap
+npm
 obs-studio
 openjdk-8-jdk
 openjdk-8-jdk-headless

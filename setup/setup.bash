@@ -105,6 +105,14 @@ echo "Now attempting to log into NordVPN"
 nordvpn c US
 nordvpn d 
 
+# install stylelint
+sudo npm -g install stylelint
+sudo npm -g install stylelint-a11y
+sudo npm -g install stylelint-csstree-validator
+sudo npm -g install stylelint-high-performance-animations
+sudo npm -g install stylelint-high-performance-animation
+sudo npm -g install stylelint-images
+
 # Set up cloudflare DNS
 echo "Setting DNS server to CloudFlare..."
 sudo cp /etc/resolv.conf /tmp/resolv.conf
