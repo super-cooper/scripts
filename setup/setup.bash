@@ -68,14 +68,24 @@ sudo dpkg -i $HOME/Downloads/*.deb
 sudo apt --fix-broken install
 sudo apt install $HOME/Downloads/mailspring.deb
 
+# pip3 packages
 pip3 install thefuck argcomplete wakatime pipupgrade
 
+# pip packages
 sudo pip install future
-cd $HOME/Downloads/
+
+# install path picker
+cd ~/Downloads/
 git clone git@github.com:facebook/PathPicker/
 cd PathPicker/debian
 ./package.sh
 sudo dpkg -i ../*.deb
+
+# install nerd fonts
+cd ~/Downloads/
+git clone git@github.com:ryanoasis/nerd-fonts.git
+cd nerd-fonts
+./install.sh
 cd
 
 # go binaries
