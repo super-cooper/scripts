@@ -97,6 +97,7 @@ inetutils-tools
 inkscape
 insync-nautilus
 iptables
+jq
 kismet
 less
 libboost-all-dev

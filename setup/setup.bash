@@ -3,8 +3,8 @@
 shopt -s expand_aliases
 cd $HOME
 
-testing=buster
-stable=stretch
+testing=testing
+stable=stable
 
 # get rid of cdrom sources in sources.list
 sudo sed -Ei 's/(deb cdrom.+)/# \1/g' /etc/apt/sources.list
