@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source $HOME/.bash_aliases
-
 # edit these variables so this script works for you
 email=adam.cooper@10gen.com                                 # your email
 venv=$HOME/mongodb/mongo/python3-venv/bin/activate          # path to your python3 virtual environment
