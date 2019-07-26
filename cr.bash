@@ -24,7 +24,7 @@ if [ -z $id ]; then
     other_args=( --rev origin/master... -y --git_similarity 90 --check-clang-format --check-eslint --title $branch --email $email $@ )
 else
     echo -e "\033[1;34mUpdating review...\033[0;0m"
-    other_args=( -i $id --rev origin/master... -y --git_similarity 90 --check-clang-format --check-eslint )
+    other_args=( -i $id --rev origin/master... -y --git_similarity 90 --check-clang-format --check-eslint $@ )
 fi
 
 # submits the CR
