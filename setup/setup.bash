@@ -8,10 +8,10 @@ stable=stable
 
 # get rid of cdrom sources in sources.list
 sudo sed -Ei 's/(deb cdrom.+)/# \1/g' /etc/apt/sources.list
-sudo bash -c 'echo deb http://ftp.us.debian.org/debian/ $testing main >> /etc/apt/sources.list'
-sudo bash -c 'echo deb-src http://ftp.us.debian.org/debian/ $testing main >> /etc/apt/sources.list'
-sudo bash -c 'echo deb http://ftp.us.debian.org/debian/ $stable main >> /etc/apt/sources.list'
-sudo bash -c 'echo deb-src http://ftp.us.debian.org/debian/ $stable main >> /etc/apt/sources.list'
+sudo bash -c "echo deb http://ftp.us.debian.org/debian/ $testing main >> /etc/apt/sources.list"
+sudo bash -c "echo deb-src http://ftp.us.debian.org/debian/ $testing main >> /etc/apt/sources.list"
+sudo bash -c "echo deb http://ftp.us.debian.org/debian/ $stable main >> /etc/apt/sources.list"
+sudo bash -c "echo deb-src http://ftp.us.debian.org/debian/ $stable main >> /etc/apt/sources.list"
 sudo apt update
 
 # set up git
@@ -43,8 +43,6 @@ echo "Setting up apt for main package installs..."
 sudo apt install wget curl
 sudo apt install python-gi
 sudo cp .root-config/sources.list /etc/apt/sources.list
-wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
-wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ACCAF35C

@@ -184,7 +184,6 @@ ttf-unifont
 unifont
 valgrind
 valgrind-dbg
-virtualbox
 vlc
 vlc-plugin-base
 wget
