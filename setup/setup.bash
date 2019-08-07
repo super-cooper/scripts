@@ -72,6 +72,9 @@ pip3 install thefuck argcomplete wakatime pipupgrade
 # pip packages
 sudo pip install future
 
+# gem packages
+sudo gem install colorls
+
 # install path picker
 cd ~/Downloads/
 git clone git@github.com:facebook/PathPicker/
