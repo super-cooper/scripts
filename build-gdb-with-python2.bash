@@ -2,7 +2,8 @@
 
 cd ~/Downloads
 
-rm -rf gdb && mkdir gdb && cd gdb
+rm -rf gdb 
+mkdir gdb && cd gdb
 sudo apt build-dep gdb
 apt source gdb
 cd $(ls | grep gdb-)
