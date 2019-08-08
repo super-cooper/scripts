@@ -7,6 +7,6 @@ mkdir gdb && cd gdb
 sudo apt build-dep gdb
 apt source gdb
 cd $(ls | grep gdb-)
-./configure --with-python=$(which python2.7)
+sed -Ei 's/(.*)--with-python=python3/\1--with-python=python2.7/g' debian/rules
 dpkg-buildpackage -us -uc -nc -B
 sudo dpkg -i ../*.deb
