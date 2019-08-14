@@ -19,22 +19,24 @@ id=$(git config branch.$branch.note 2> /dev/null | xargs echo)
 # determines appropriate args based on whether an ID was found in git-notes
 if [ -z "$id" ]; then
     echo -e "\033[1;92mCreating NEW review...\033[0;0m"
-    other_args=( --rev origin/master... -y --git_similarity 90 --check-clang-format --check-eslint --title $branch --email $email $@ )
+    other_args=( --rev origin/master... -y --check-clang-format --check-eslint --title $branch --email $email $@ )
 else
     echo -e "\033[1;34mUpdating review...\033[0;0m"
-    other_args=( -i "$id" --rev origin/master... -y --git_similarity 90 --check-clang-format --check-eslint --title $branch $@ )
+    other_args=( -i "$id" --rev origin/master... -y --check-clang-format --check-eslint --title $branch $@ )
 fi
 
 # submits the CR
-output=$(source "$venv" && python3 "$cr_upload" ${other_args[@]} 2> /dev/null | grep URL:)
+output=$(source "$venv" && python3 "$cr_upload" ${other_args[@]} 2> /dev/null)
+urlline=$(echo $output | grep URL:)
 code=$?
 if [ $code -ne 0 ]; then
     echo "Uploading code review failed ($code)"
+    echo $output
     exit $code
 fi
 
 # extracts the URL and ID from the output of the code review submission
-url=$(echo "$output" | sed -E 's/.+(http.+)/\1/g')
+url=$(echo "$urlline" | sed -E 's/.+(http.+)/\1/g')
 id=$(echo "$url" | sed -E 's/.+\/([0-9]+).*/\1/g')
 
 # stores the ID in the branch's git-notes
