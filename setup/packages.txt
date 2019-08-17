@@ -117,8 +117,6 @@ libreoffice-impress
 libreoffice-java-common
 libreoffice-lightproof-en
 libreoffice-math
-libreoffice-ogltrans
-libreoffice-pdfimport
 libreoffice-report-builder
 libreoffice-report-builder-bin
 libreoffice-sdbc-postgresql
@@ -149,10 +147,10 @@ ngrep
 nmap
 npm
 obs-studio
-openjdk-8-jdk
-openjdk-8-jdk-headless
-openjdk-8-jre
-openjdk-8-jre-headless
+openjdk-13-jdk
+openjdk-13-jdk-headless
+openjdk-13-jre
+openjdk-13-jre-headless
 papirus-icon-theme
 parallel
 pkg-config
@@ -192,7 +190,6 @@ wireshark-doc
 wireshark-gtk
 vim
 vim-gtk3
-vim-gnome
 xclip
 yubikey-manager
 yubioath-desktop
