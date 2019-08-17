@@ -115,7 +115,6 @@ libreoffice-gtk3
 libreoffice-help-en-us
 libreoffice-impress
 libreoffice-java-common
-libreoffice-lightproof-en
 libreoffice-math
 libreoffice-report-builder
 libreoffice-report-builder-bin
