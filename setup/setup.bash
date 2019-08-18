@@ -192,4 +192,4 @@ echo "Setting shell to zsh..."
 chsh -s /bin/zsh
 
 # open browser to things not yet installed
-firefox opera.com/computer/linux slack.com/downloads/linux https://www.anaconda.com/download/#linux jetbrains.com
+firefox vivaldi.com/download slack.com/downloads/linux https://www.anaconda.com/download/#linux jetbrains.com
