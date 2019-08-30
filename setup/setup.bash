@@ -70,7 +70,7 @@ sudo apt --fix-broken install
 sudo apt install $HOME/Downloads/mailspring.deb
 
 # pip3 packages
-pip3 install thefuck argcomplete wakatime pipupgrade
+pip3 install thefuck argcomplete wakatime pipupgrade virtualenvwrapper
 
 # pip packages
 sudo pip install future
