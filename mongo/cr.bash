@@ -6,9 +6,12 @@ venv=$HOME/.virtualenvs/mongo/bin/activate                  # path to your pytho
 cr_upload=$HOME/mongodb/kernel-tools/codereview/upload.py   # path to the kernel-tools upload.py file
 browser=vivaldi                                             # command to open your internet browser
 
+if [ -n "$(git --git-dir=$HOME/mongodb/enterprise/.git cherry -v)" ]; then
+    cd $HOME/mongodb/enterprise
+fi
+
 # gets the name of the current checked-out branch
 branch=$(git branch | grep "\*" | cut -d ' ' -f2)
-upstream=$(git rev-parse --abbrev-ref "$branch@{upstream}" | sed 's/.*\///')
 if [ "$branch" == "master" ]; then
     echo "I won't put notes on master!!"
     exit 1
@@ -20,10 +23,10 @@ id=$(git config branch.$branch.note 2> /dev/null | xargs echo)
 # determines appropriate args based on whether an ID was found in git-notes
 if [ -z "$id" ]; then
     echo -e "\033[1;92mCreating NEW review...\033[0;0m"
-    other_args=( --rev origin/$upstream... -y --check-clang-format --check-eslint --title $branch --email $email $@ )
+    other_args=( --git_only_search_patch --git_similarity 75 --rev $(git config branch.$branch.root) -y --check-clang-format --check-eslint --title $branch --email $email $@ )
 else
     echo -e "\033[1;34mUpdating review...\033[0;0m"
-    other_args=( -i "$id" --rev origin/$upstream... -y --check-clang-format --check-eslint --title $branch $@ )
+    other_args=( --git_only_search_patch --git_similarity 75 -i "$id" --rev $(git config branch.$branch.root) -y --check-clang-format --check-eslint --title $branch $@ )
 fi
 
 # submits the CR
@@ -37,7 +40,7 @@ if [ $code -ne 0 ]; then
 fi
 
 # extracts the URL and ID from the output of the code review submission
-url=$(echo "$urlline" | sed -E 's/.+(http.+)/\1/g')
+url=$(echo "$urlline" | sed -E 's/.+(https?.\/\/mongodbcr.appspot.com\/[0-9]+).*/\1/g')
 id=$(echo "$url" | sed -E 's/.+\/([0-9]+).*/\1/g')
 
 # stores the ID in the branch's git-notes
