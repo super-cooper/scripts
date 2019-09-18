@@ -61,13 +61,11 @@ sudo apt upgrade
 echo "Installing packages..."
 xargs -a <(awk '! /^ *(#|$)/' "$HOME/dev/scripts/setup/packages.txt") -r -- sudo apt install
 wget -nv -i $HOME/dev/scripts/setup/external-packages.txt -P $HOME/Downloads
-wget -nv -O $HOME/Downloads/mailspring.deb "https://updates.getmailspring.com/download?platform=linuxDeb" 
 wget -nv -O $HOME/Downloads/nordvpn.deb "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn-release_1.0.0_all.deb"
 wget -nv -O $HOME/Downloads/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
 
 sudo dpkg -i $HOME/Downloads/*.deb
 sudo apt --fix-broken install
-sudo apt install $HOME/Downloads/mailspring.deb
 
 # pip3 packages
 pip3 install thefuck argcomplete wakatime pipupgrade virtualenvwrapper
@@ -87,7 +85,7 @@ sudo dpkg -i ../*.deb
 
 # install nerd fonts
 cd ~/Downloads/
-git clone git@github.com:ryanoasis/nerd-fonts.git
+git clone --depth 1 git@github.com:ryanoasis/nerd-fonts.git
 cd nerd-fonts
 ./install.sh
 cd
