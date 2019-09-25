@@ -7,7 +7,15 @@ cr_upload=$HOME/mongodb/kernel-tools/codereview/upload.py   # path to the kernel
 browser=vivaldi                                             # command to open your internet browser
 
 if [ -n "$(git --git-dir=$HOME/mongodb/enterprise/.git cherry -v)" ]; then
-    cd $HOME/mongodb/enterprise
+    yn=y
+    if [ -n "$(git --git-dir=$HOME/mongodb/mongo/.git cherry -v)" ]; then
+        printf "Detected modifications on both enterprise and community. Submit enterprise CR? "
+        read yn
+    fi
+
+    if [ ${yn^^} == "Y" ] || [ ${yn^^} == "YES" ]; then
+        cd $HOME/mongodb/enterprise
+    fi
 fi
 
 # gets the name of the current checked-out branch
@@ -23,10 +31,16 @@ id=$(git config branch.$branch.note 2> /dev/null | xargs echo)
 # determines appropriate args based on whether an ID was found in git-notes
 if [ -z "$id" ]; then
     echo -e "\033[1;92mCreating NEW review...\033[0;0m"
-    other_args=( --git_only_search_patch --git_similarity 75 --rev $(git config branch.$branch.root) -y --check-clang-format --check-eslint --title $branch --email $email $@ )
+    other_args=( --title $branch --email $email $@ -y --git_only_search_patch --git_similarity 75 --rev "$(git config branch.$branch.root)" )
 else
     echo -e "\033[1;34mUpdating review...\033[0;0m"
-    other_args=( --git_only_search_patch --git_similarity 75 -i "$id" --rev $(git config branch.$branch.root) -y --check-clang-format --check-eslint --title $branch $@ )
+    other_args=( --title $branch $@ -y --git_only_search_patch --git_similarity 75 -i "$id" --rev "$(git config branch.$branch.root)" )
+fi
+
+# only check clang-format and eslint if not a backport
+if [ -z "$(echo $branch | grep "BACKPORT")" ]; then
+    other_args+="--check-clang-format"
+    other_args+="--check-eslint"
 fi
 
 # submits the CR
