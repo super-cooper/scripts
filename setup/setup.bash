@@ -44,7 +44,7 @@ sudo apt install wget curl
 sudo apt install python-gi
 sudo cp .root-config/sources.list /etc/apt/sources.list
 wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
-wfet -q https://www.virtualbox.org/download/oracle_vboc.asc -O- | sudo apt-key add -
+wget -q https://www.virtualbox.org/download/oracle_vboc.asc -O- | sudo apt-key add -
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ACCAF35C
