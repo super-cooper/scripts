@@ -39,8 +39,8 @@ fi
 
 # only check clang-format and eslint if not a backport
 if [ -z "$(echo $branch | grep "BACKPORT")" ]; then
-    other_args+="--check-clang-format"
-    other_args+="--check-eslint"
+    other_args+=( --check-clang-format )
+    other_args+=( --check-eslint )
 fi
 
 # submits the CR
