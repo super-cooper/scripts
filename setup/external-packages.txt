@@ -1,5 +1,4 @@
 https://github.com/sharkdp/bat/releases/download/v0.9.0/bat_0.9.0_amd64.deb 
-https://download.opensuse.org/repositories/home:/antergos/Debian_9.0/amd64/lightdm-webkit2-greeter_2.2.5-1+15.4_amd64.deb 
 https://www.rescuetime.com/installers/rescuetime_current_amd64.deb
 https://github.com/sharkdp/hexyl/releases/download/v0.3.1/hexyl_0.3.1_amd64.deb
 

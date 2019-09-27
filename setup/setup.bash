@@ -76,13 +76,6 @@ sudo pip install future
 # gem packages
 sudo gem install colorls
 
-# install path picker
-cd ~/Downloads/
-git clone git@github.com:facebook/PathPicker/
-cd PathPicker/debian
-./package.sh
-sudo dpkg -i ../*.deb
-
 # install nerd fonts
 cd ~/Downloads/
 git clone --depth 1 git@github.com:ryanoasis/nerd-fonts.git

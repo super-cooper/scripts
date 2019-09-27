@@ -100,7 +100,11 @@ iptables
 jq
 kismet
 less
+libatomic1
+libappindicator1
 libboost-all-dev
+libc++1
+libgconf-2-4
 libgdk-pixbuf2.0-dev
 libglib2.0-dev
 libpam-u2f
@@ -133,7 +137,6 @@ linux-headers-amd64
 lolcat
 lshw
 macchanger
-mpd
 nautilus-admin
 nautilus-image-converter
 nautilus-scripts-manager
@@ -167,7 +170,7 @@ qalc
 qtchooser
 rename
 ripgrep
-ruby2.5
+ruby
 sassc
 solaar-gnome3
 spotify-client
@@ -191,7 +194,7 @@ vim
 vim-gtk3
 xclip
 yubikey-manager
-yubioath-desktop
+yubiserver
 zsh
 zsh-antigen
 zsh-doc
