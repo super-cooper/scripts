@@ -1,3 +1,5 @@
+#!/usr/local/bin/python2
+
 import os
 
 print "---------- Close tab to right in Vivaldi for Mac OS - OUBRECHT.com ----------"
