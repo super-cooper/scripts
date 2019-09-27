@@ -88,7 +88,7 @@ echo "Installing golang packages..."
 go get -v -u github.com/edi9999/path-extractor/path-extractor github.com/zricethezav/gitleaks github.com/michenriksen/gitrob github.com/github/hub github.com/wtfutil/wtf google.golang.org/api/calendar/v3 golang.org/x/oauth2/google
 mv $HOME/go $HOME/.gopath
 sudo ln -s $HOME/.gopath/bin/hub /bin/hub
-cd $GOPATH/src/github.com/wtfutil/wtf
+cd $HOME/.gopath/src/github.com/wtfutil/wtf
 go install -v -ldflags="-s -w"
 make
 mkdir -p ~/.config/google/credentials/wtfutil
