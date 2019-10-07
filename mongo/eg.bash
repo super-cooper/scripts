@@ -1,3 +1,6 @@
+#!/bin/bash
+
+shopt -s expand_aliases
 export PWD=/home/adam/mongodb/mongo
 alias evergreen=/home/adam/.local/bin/evergreen
 branch=$(git branch | grep "\*" | cut -d ' ' -f2)
