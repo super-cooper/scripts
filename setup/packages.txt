@@ -1,4 +1,5 @@
 apf-firewall 
+apt-listbugs
 autoconf
 automake
 bash-completion
