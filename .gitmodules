@@ -13,3 +13,6 @@
 [submodule "hacking/h8mail"]
 	path = hacking/h8mail
 	url = git://github.com/khast3x/h8mail.git
+[submodule "hardcode-fixer"]
+	path = hardcode-fixer
+	url = git://github.com/Foggalong/hardcode-fixer.git
