@@ -28,13 +28,16 @@ fi
 # tries to obtain the ID of the code review from git-notes
 id=$(git config branch.$branch.note 2> /dev/null | xargs echo)
 
+# Stores the last git commit as message
+message=""
+
 # determines appropriate args based on whether an ID was found in git-notes
 if [ -z "$id" ]; then
     echo -e "\033[1;92mCreating NEW review...\033[0;0m"
-    other_args=( --title $branch --email $email $@ -y --git_only_search_patch --git_similarity 75 --rev "$(git config branch.$branch.root)" )
+    other_args=( --email $email $@ -y --git_only_search_patch --git_similarity 75 --rev "$(git config branch.$branch.root)" )
 else
     echo -e "\033[1;34mUpdating review...\033[0;0m"
-    other_args=( --title $branch $@ -y --git_only_search_patch --git_similarity 75 -i "$id" --rev "$(git config branch.$branch.root)" )
+    other_args=( $@ -y --git_only_search_patch --git_similarity 75 -i "$id" --rev "$(git config branch.$branch.root)" )
 fi
 
 # only check clang-format and eslint if not a backport
@@ -44,7 +47,7 @@ if [ -z "$(echo $branch | grep "BACKPORT")" ]; then
 fi
 
 # submits the CR
-output=$(source "$venv" && python3 "$cr_upload" ${other_args[@]})
+output=$(source "$venv" && python3 "$cr_upload" ${other_args[@]} --title "$(git log -1 --pretty=%B | cut -d' ' -f2-)")
 urlline=$(echo $output | grep URL:)
 code=$?
 if [ $code -ne 0 ]; then
