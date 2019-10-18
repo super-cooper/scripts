@@ -68,7 +68,7 @@ sudo dpkg -i $HOME/Downloads/*.deb
 sudo apt --fix-broken install
 
 # pip3 packages
-pip3 install thefuck argcomplete wakatime pipupgrade virtualenvwrapper
+sudo pip3 install thefuck argcomplete wakatime pipupgrade virtualenvwrapper shell-functions
 
 # pip packages
 sudo pip install future
