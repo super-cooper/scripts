@@ -69,7 +69,13 @@ gnome-screenshot
 gnome-session
 gnome-settings-daemon
 gnome-shell
+gnome-shell-extension-no-annoyance
+gnome-shell-extension-dash-to-panel
+gnome-shell-extension-caffeine
+gnome-shell-extension-appindicator
+gnome-shell-extension-top-icons-plus
 gnome-shell-extensions
+gnome-shell-mailnag
 gnome-software
 gnome-software-plugin-flatpak
 gnome-system-monitor
