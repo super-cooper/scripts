@@ -98,6 +98,7 @@ gtk-doc-tools
 gvfs
 hashcat
 htop
+hub
 ifupdown
 inetutils-traceroute
 inetutils-tools
