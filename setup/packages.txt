@@ -6,6 +6,7 @@ bash-completion
 build-essential 
 bundler
 clang
+clangd
 closure-linter
 cmake
 cmus
