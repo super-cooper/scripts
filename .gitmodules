@@ -19,3 +19,6 @@
 [submodule "hacking/truffleHog"]
 	path = hacking/truffleHog
 	url = git://github.com/dxa4481/truffleHog.git
+[submodule "hacking/flan"]
+	path = hacking/flan
+	url = git://github.com/cloudflare/flan.git
