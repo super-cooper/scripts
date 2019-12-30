@@ -13,7 +13,8 @@ if [ -n "$(git --git-dir=$HOME/mongodb/enterprise/.git cherry -v)" ]; then
         read yn
     fi
 
-    if [ ${yn^^} == "Y" ] || [ ${yn^^} == "YES" ]; then
+    normalized=$(echo $yn | awk '{print toupper($0)}')
+    if [ $normalized == "Y" ] || [ $normalized == "YES" ]; then
         cd $HOME/mongodb/enterprise
     fi
 fi
