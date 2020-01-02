@@ -35,6 +35,7 @@ gconf-editor
 gdb
 gimp 
 git
+git-delta
 git-extras 
 git-lfs 
 gnome-backgrounds
