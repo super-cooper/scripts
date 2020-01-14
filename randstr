@@ -1,0 +1,16 @@
+#!/bin/env python3
+
+import random
+import sys
+
+args = sys.argv[1:]
+n = 256
+if len(args) > 0:
+    try:
+        n = int(args[0])
+    except:
+        print("Valid args can only be numbers")
+        sys.exit(1)
+
+print(''.join(chr(random.randint(33, 126)) for _ in range(n)))
+
