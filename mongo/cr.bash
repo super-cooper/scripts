@@ -27,7 +27,7 @@ if [ "$branch" == "master" ]; then
 fi
 
 # tries to obtain the ID of the code review from git-notes
-id=$(git config branch.$branch.note 2> /dev/null | xargs echo)
+#id=$(git config branch.$branch.note 2> /dev/null | xargs echo)
 
 # Stores the last git commit as message
 message=""
@@ -35,10 +35,10 @@ message=""
 # determines appropriate args based on whether an ID was found in git-notes
 if [ -z "$id" ]; then
     echo -e "\033[1;92mCreating NEW review...\033[0;0m"
-    other_args=( --email $email $@ -y --git_only_search_patch --git_similarity 75 --rev "$(git config branch.$branch.root)" )
+    other_args=( --email $email $@ -y --git_only_search_patch --git_similarity 75 --rev "$(git merge-base -a HEAD origin/master)" )
 else
     echo -e "\033[1;34mUpdating review...\033[0;0m"
-    other_args=( $@ -y --git_only_search_patch --git_similarity 75 -i "$id" --rev "$(git config branch.$branch.root)" )
+    other_args=( $@ -y --git_only_search_patch --git_similarity 75 -i "$id" --rev "$(git merge-base -a HEAD origin/master)" )
 fi
 
 # only check clang-format and eslint if not a backport
@@ -62,7 +62,7 @@ url=$(echo "$urlline" | sed -E 's/.+(https?.\/\/mongodbcr.appspot.com\/[0-9]+).*
 id=$(echo "$url" | sed -E 's/.+\/([0-9]+).*/\1/g')
 
 # stores the ID in the branch's git-notes
-git config branch.$branch.note $id
+#git config branch.$branch.note $id
 
 # open the CR in the browser
 $browser "$url" &> /dev/null
