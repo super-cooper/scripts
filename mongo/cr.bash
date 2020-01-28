@@ -27,7 +27,7 @@ if [ "$branch" == "master" ]; then
 fi
 
 # tries to obtain the ID of the code review from git-notes
-#id=$(git config branch.$branch.note 2> /dev/null | xargs echo)
+id=$(git config branch.$branch.note 2> /dev/null | xargs echo)
 
 # Stores the last git commit as message
 message=""
@@ -42,7 +42,7 @@ else
 fi
 
 # only check clang-format and eslint if not a backport
-if [ -z "$(echo $branch | grep "BACKPORT")" ]; then
+if [ -z "$(echo $branch | grep 'BACKPORT')" ]; then
     other_args+=( --check-clang-format )
     other_args+=( --check-eslint )
 fi
@@ -62,7 +62,7 @@ url=$(echo "$urlline" | sed -E 's/.+(https?.\/\/mongodbcr.appspot.com\/[0-9]+).*
 id=$(echo "$url" | sed -E 's/.+\/([0-9]+).*/\1/g')
 
 # stores the ID in the branch's git-notes
-#git config branch.$branch.note $id
+git config branch.$branch.note $id
 
 # open the CR in the browser
 $browser "$url" &> /dev/null
