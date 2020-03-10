@@ -1,0 +1,38 @@
+#!/bin/bash
+
+if [[ $# -lt 2 ]]; then
+    echo "Usage: mounthost <host> <name>"
+    exit 1
+fi
+
+path="$HOME/mongodb/spawnhost/$2"
+host="$1"
+mkdir -p ${path}
+
+echo "Mounting ${host} to ${path}..."
+sudo sshfs -o allow_other,default_permissions,IdentityFile=/home/adam/.ssh/id_rsa ${host}:/ ${path}
+echo "Done."
+
+cd ${path}/data/mci
+artifacts=$(ls | grep compile)
+cd ${artifacts}
+artifacts=$(ls | grep mongo-mongodb)
+echo "Determined artifacts dir as ${artifacts}"
+
+echo "Extracting archive..."
+tar --checkpoint=5000 -zxvf ${artifacts}
+echo "Done."
+
+artifacts=$(ls | grep mongodb-linux)
+sourcepath=$(ls ${path}/data/mci | grep "source")
+echo "Copying binaries into ${sourcepath}"
+cp ${artifacts}/bin/* ${path}/data/mci/${sourcepath}
+echo "Done."
+
+echo "Setting up python environment"
+ssh $host "sudo apt install -y python3.7-venv python3.7-dev"
+ssh $host "python3.7 -m venv /data/mci/${sourcepath}/venv"
+ssh $host "/data/mci/${sourcepath}/venv/bin/python3.7 -m pip install -r /data/mci/${sourcepath}/etc/pip/dev-requirements.txt"
+ssh $host "/data/mci/${sourcepath}/venv/bin/python3.7 -m pip install -r /data/mci/${sourcepath}/etc/pip/evgtest-requirements.txt"
+echo "Finished."
+
