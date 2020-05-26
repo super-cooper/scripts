@@ -1,7 +1,7 @@
 #!/bin/bash
-export PWD=/home/adam/mongodb/mongo/
+export PWD=/home/adam/dev/mongodb/mongo/
 
-upstream=$(git --git-dir=/home/adam/mongodb/mongo/.git rev-parse --abbrev-ref "$branch@{upstream}" | sed 's/.*\///')
+upstream=$(git --git-dir=$PWD/.git rev-parse --abbrev-ref "$branch@{upstream}" | sed 's/.*\///')
 old_backport=$(echo $upstream | grep -e v3\. -e v4\.0)
 
 if [ -z $old_backport ]; then
@@ -12,4 +12,4 @@ fi
 
 echo Using python: $env
 source $env
-"$HOME"/mongodb/mongo/buildscripts/clang_format.py format $@
+$PWD/buildscripts/clang_format.py format $@
