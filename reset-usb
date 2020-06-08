@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd /sys/bus/pci/drivers/xhci_hcd 
+for device in $(ls | grep 0000); do
+    sudo bash -c "echo -n ${device} > unbind" 
+    sleep 2
+    sudo bash -c "echo -n ${device} > bind" 
+    echo "reset device ${device}"
+done
