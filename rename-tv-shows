@@ -1,0 +1,23 @@
+#!/bin/env python3
+
+import sys
+import os
+import shutil
+
+season_dir = sys.argv[1]
+if season_dir.endswith('/'):
+    season_dir = season_dir[:-1]
+season_num = season_dir.split()[-1]
+new_season_num = season_num if len(season_num) > 1 else '0' + season_num
+
+new_dir_name = f"Season {season_num} new"
+os.mkdir(new_dir_name)
+
+for file in os.listdir(season_dir):
+    with_ep = file.replace(season_num, '', 1)
+    ep_num = with_ep.split()[0]
+    ep_name = ' '.join(with_ep.split()[2:])
+    new_file = f"S{new_season_num}E{ep_num} - {ep_name}"
+    print(new_file)
+    shutil.copyfile(f"{season_dir}/{file}", f"{new_dir_name}/{new_file}")
+
