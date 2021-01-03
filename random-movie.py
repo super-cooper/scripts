@@ -25,16 +25,27 @@ film_list = []
 # read in the whole list
 with open(watchlist_path) as f:
     reader = csv.reader(f, delimiter=',')
-    for row in reader:
-        film_list.append(list(row))
+    film_list = [list(row) for row in reader]
 
 # remove the header (DATE|NAME|YEAR|URI)
-film_list.pop(0)
+header = film_list.pop(0)
 
-film = random.choice(film_list)
+if len(film_list) == 0:
+    print("Film list is empty!")
+    sys.exit(1)
+
+choice = random.randrange(len(film_list))
+film = film_list[choice]
 date = film[0]
 name = film[1]
 year = film[2]
 uri = film[3]
 
 print(f"{name} ({year})\nAdded {date}\nLink: {uri}")
+
+# We will now delete the film, and rewrite the file
+del film_list[choice]
+with open(watchlist_path, 'w') as f:
+    writer = csv.writer(f, delimiter=',')
+    writer.writerow(header)
+    writer.writerows(film_list)
