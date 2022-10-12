@@ -22,3 +22,6 @@
 [submodule "hacking/flan"]
 	path = hacking/flan
 	url = git://github.com/cloudflare/flan.git
+[submodule "git-partial-submodule"]
+	path = git-partial-submodule
+	url = https://github.com/Reedbeta/git-partial-submodule
