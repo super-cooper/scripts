@@ -2,7 +2,7 @@
 
 help="Usage: git fuzz <option> <args>\nd diff\nl log\na add\nc clean\nf files\ni ignore\ns stash\nr restore"
 
-source $HOME/.antigen/bundles/wfxr/forgit/forgit.plugin.zsh
+source $HOME/.oh-my-zsh/custom/plugins/forgit/forgit.plugin.zsh
 
 case "$1" in
     d|diff)
